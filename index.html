@@ -95,7 +95,7 @@ main{margin-left:var(--sidebar);padding-top:var(--header);min-height:100vh}.page
   </div></section>
   <section class="page" id="page-angel-characters" data-route="angel-characters" hidden><header class="page-heading"><div class="eyebrow en">CHAPTER VI · ANGELIC RECORDS</div><h2>백익의 인물</h2><p>엔젤 페더스에 소속된 네 명의 대천사 · 일러스트 </p></header><div class="gallery character-gallery" id="angelCharacterGrid"></div></section>
   <section class="page" id="page-fallen-characters" data-route="fallen-characters" hidden><header class="page-heading"><div class="eyebrow en">CHAPTER VII · FALLEN RECORDS</div><h2>흑익의 인물</h2><p>폴른 페더스에 소속된 네 명의 타천사 · 일러스트 </p></header><div class="gallery character-gallery" id="fallenCharacterGrid"></div></section>
-  <section class="page" id="page-places" data-route="places" hidden><header class="page-heading"><div class="eyebrow en">CHAPTER VIII · FORBIDDEN PLACES</div><h2>핵심 장소</h2><p>전쟁과 창조의 비밀이 잠든 열 곳의 기록 · 일러스트 1216 × 832</p></header><div class="gallery landscape-gallery" id="placeGrid"></div></section>
+  <section class="page" id="page-places" data-route="places" hidden><header class="page-heading"><div class="eyebrow en">CHAPTER VIII · FORBIDDEN PLACES</div><h2>핵심 장소</h2><p>전쟁과 창조의 비밀이 잠든 열 곳의 기록 · 일러스트 </p></header><div class="gallery landscape-gallery" id="placeGrid"></div></section>
 </main>
 <audio id="bgmAudio" preload="none" loop></audio>
 <div class="modal-backdrop hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -159,7 +159,7 @@ function node(tag,className,text){const e=document.createElement(tag);if(classNa
 /* 이미지가 없으면 프레임/문양을 보여줌. 이미지가 있으면 정확한 프레임 비율에 채움. */
 function artFrame(data,kind){
   const frame=node('div','art-frame');frame.dataset.ratio=kind==='character'?'square':'landscape';frame.dataset.tone=data.tone||data.group||'mortal';
-  const fallback=node('div','art-fallback');fallback.append(node('span','art-symbol',data.symbol||'✧'),node('span','art-hint',kind==='character'?'':'1216 × 832'));frame.append(fallback);
+  const fallback=node('div','art-fallback');fallback.append(node('span','art-symbol',data.symbol||'✧'),node('span','art-hint',kind==='character'?'':''));frame.append(fallback);
   if(data.image){const img=new Image();img.src=data.image;img.loading='lazy';img.alt=data.name+' 일러스트';img.addEventListener('error',()=>img.remove(),{once:true});frame.append(img);}
   return frame;
 }
