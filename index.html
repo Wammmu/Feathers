@@ -11,10 +11,43 @@
 :root{--bg:#0b0c12;--paper:#12131b;--panel:#171823;--panel2:#1c1b26;--ink:#eee7dc;--sub:#c6bdbe;--mute:#99939e;--line:#39343e;--gold:#cdb17d;--gold-light:#ead6a7;--red:#c78f9d;--sidebar:244px;--header:70px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Serif KR',Georgia,serif;font-size:15px;line-height:1.85;min-height:100vh}body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:98;opacity:.2;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22170%22 height=%22170%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%22.12%22/%3E%3C/svg%3E')}
 [hidden],.hidden{display:none!important}button,input{font:inherit}button{cursor:pointer}button,a,input{ -webkit-tap-highlight-color:transparent }button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px}button{color:inherit}a{color:inherit;text-decoration:none}h1,h2,h3,p{margin:0}h1,h2,h3{font-weight:500}.en{font-family:Cinzel,Georgia,serif;letter-spacing:.11em}.eyebrow{color:var(--gold);font-size:.7rem;letter-spacing:.22em}.muted{color:var(--mute)}.skip{position:fixed;top:-90px;left:15px;background:var(--gold);color:#121018;padding:10px 15px;z-index:260}.skip:focus{top:12px}
-/* INTRO: 이미지 없이도 작동, 문/배경 이미지를 넣으면 자동으로 덮어씀 */
-#intro{position:fixed;inset:0;z-index:220;display:grid;place-items:center;overflow:hidden;background:#05060a;isolation:isolate;transition:opacity .9s,visibility .9s}#intro.finished{opacity:0;visibility:hidden;pointer-events:none}#intro .beyond{position:absolute;inset:-4%;background:radial-gradient(circle at 50% 47%,#c0a56f 0,#514055 17%,#1b1a29 44%,#05060b 77%);overflow:hidden}#intro .beyond::after{content:'✧';font-size:clamp(320px,65vw,890px);line-height:1;color:#f1dda7;opacity:.12;position:absolute;inset:0;display:grid;place-items:center}#intro .beyond img{width:100%;height:100%;object-fit:cover;opacity:.85}
-.intro-door{position:absolute;top:0;bottom:0;width:50.25%;z-index:2;overflow:hidden;background:repeating-linear-gradient(90deg,transparent 0 70px,#0b0c11 71px 73px,transparent 75px 155px),linear-gradient(130deg,#24212b 0,#14131e 45%,#26212b 80%,#0b0b13);box-shadow:inset 0 0 0 15px #0c0d15,inset 0 0 0 17px #806b4c,inset 0 0 110px #000;transition:transform 2.25s cubic-bezier(.62,.06,.17,1)}.intro-door.left{left:0;border-right:4px double #af9361;transform-origin:left center}.intro-door.right{right:0;border-left:4px double #af9361;transform-origin:right center}.intro-door::before{content:'';position:absolute;inset:6% 7%;border:1px solid #8f7854;box-shadow:inset 0 0 0 10px #12131c,inset 0 0 0 12px #54483c;z-index:2;pointer-events:none}.intro-door::after{content:'✧';font-size:clamp(130px,21vw,320px);position:absolute;inset:0;display:grid;place-items:center;color:#b29b71;opacity:.24;z-index:2;pointer-events:none}.intro-door.right::after{transform:rotate(180deg)}.intro-door img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}.intro-open .intro-door.left{transform:perspective(1000px) rotateY(-18deg) translateX(-110%)}.intro-open .intro-door.right{transform:perspective(1000px) rotateY(18deg) translateX(110%)}
-.intro-content{position:relative;z-index:3;max-width:94vw;text-align:center;padding:36px 26px;background:linear-gradient(90deg,transparent,#090a13b9,transparent);filter:drop-shadow(0 5px 21px #000);transition:opacity .4s,transform .6s}.intro-open .intro-content{opacity:0;transform:scale(1.05)}.intro-mark{font-size:2.2rem;color:var(--gold-light)}.intro-content h1{font-size:clamp(2.35rem,6.2vw,6rem);letter-spacing:.14em;line-height:1.17;margin:23px 0}.intro-content .subtitle{letter-spacing:.15em;color:#e9d9bb;margin-bottom:27px}.intro-hint{display:block;color:#c0ac89;font:.61rem Cinzel,serif;letter-spacing:.22em;margin-top:18px}
+/* INTRO: 구름 낀 천공이 좌우로 갈라지고 흑백 깃털이 내려오는 연출 */
+#intro{position:fixed;inset:0;z-index:220;display:grid;place-items:center;overflow:hidden;background:#101321;isolation:isolate;transition:opacity 1s ease,visibility 1s}
+#intro.finished{opacity:0;visibility:hidden;pointer-events:none}
+#intro .beyond{position:absolute;inset:-5%;background:radial-gradient(ellipse at 50% 44%,#fff3d1 0%,#e1c7a7 18%,#9aa6c4 45%,#303b62 74%,#0d1429 100%);transform:scale(1.13);transition:transform 4.3s ease,filter 4s ease}
+#intro .beyond img{width:100%;height:100%;object-fit:cover;opacity:.9}
+#intro .beyond::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 46%,#fff9d875,transparent 46%)}
+.intro-sky{position:absolute;top:-4%;bottom:-4%;width:52%;z-index:2;overflow:hidden;transition:transform 3.2s cubic-bezier(.68,.02,.18,1),opacity 3.1s ease,filter 3s ease;will-change:transform}
+.intro-sky.left{left:-1%;transform-origin:left center}
+.intro-sky.right{right:-1%;transform-origin:right center}
+.intro-sky::before{content:'';position:absolute;inset:-5%;background:radial-gradient(ellipse at 55% 30%,#fff9ed 0%,#e4d8d3 19%,#aebbd0 41%,#7b89a8 65%,#354260 100%);filter:blur(3px)}
+.intro-sky::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 80%,#ffffffb8 0%,transparent 48%),radial-gradient(ellipse at 85% 20%,#fff8e7d6 0%,transparent 39%),radial-gradient(ellipse at 70% 67%,#f3e7e8c7 0%,transparent 42%);filter:blur(18px);animation:cloud-drift 10s ease-in-out infinite alternate}
+.intro-sky img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:.88}
+.intro-sky.left img{object-position:left center}.intro-sky.right img{object-position:right center}
+#intro.intro-open .intro-sky.left{transform:translateX(-106%);opacity:.25;filter:blur(9px)}
+#intro.intro-open .intro-sky.right{transform:translateX(106%);opacity:.25;filter:blur(9px)}
+#intro.intro-open .beyond{transform:scale(1);filter:brightness(1.13)}
+@keyframes cloud-drift{to{transform:translate3d(2%,1%,0) scale(1.06)}}
+.intro-content{position:relative;z-index:5;max-width:94vw;text-align:center;padding:36px 26px;background:radial-gradient(ellipse,#11172dce 0%,#11172d77 52%,transparent 75%);filter:drop-shadow(0 5px 21px #18213d);transition:opacity .8s,transform 1.3s}
+.intro-open .intro-content{opacity:0;transform:translateY(-22px) scale(1.07);pointer-events:none}
+.intro-mark{font-size:2.2rem;color:var(--gold-light)}.intro-content h1{font-size:clamp(2.35rem,6.2vw,6rem);letter-spacing:.14em;line-height:1.17;margin:23px 0}.intro-content .subtitle{letter-spacing:.15em;color:#f3e8d6;margin-bottom:27px}.intro-hint{display:block;color:#ead4ae;font:.61rem Cinzel,serif;letter-spacing:.22em;margin-top:18px}
+/* Fine feather silhouettes with central rachis, layered barbs and gentle 3D drifting */
+.feather-field{position:absolute;inset:0;z-index:4;overflow:hidden;pointer-events:none;perspective:900px}
+.feather{position:absolute;top:-23%;left:var(--x);width:var(--size);height:calc(var(--size)*2.85);opacity:0;transform-origin:50% 35%;will-change:transform,opacity;animation:feather-fall var(--duration) cubic-bezier(.36,.02,.65,.98) var(--delay) forwards;filter:drop-shadow(0 3px 5px #10132235)}
+.feather-inner{width:100%;height:100%;display:block;animation:feather-sway var(--sway) ease-in-out infinite alternate;transform-origin:50% 24%}
+.feather svg{display:block;width:100%;height:100%;overflow:visible}
+.feather.is-dark{filter:drop-shadow(0 3px 6px #08091277)}
+@keyframes feather-fall{
+  0%{opacity:0;transform:translate3d(0,-8vh,0) rotate(-18deg) rotateY(0deg) scale(.8)}
+  10%{opacity:var(--alpha)}
+  72%{opacity:var(--alpha)}
+  100%{opacity:0;transform:translate3d(var(--drift),118vh,0) rotate(var(--rotation)) rotateY(240deg) scale(1.04)}
+}
+@keyframes feather-sway{
+  0%{transform:translateX(-15px) rotate(-18deg) rotateY(-32deg)}
+  100%{transform:translateX(18px) rotate(23deg) rotateY(34deg)}
+}
+#intro .sound-control{position:absolute;right:22px;bottom:22px;z-index:7;border:1px solid #f6e5c680;background:#121a2ba8;color:#f5e7d4;padding:7px 13px;font-size:.75rem}
 .gold-btn,.ghost-btn{border:1px solid var(--gold);padding:12px 22px;background:var(--gold);color:#1a1520;display:inline-flex;gap:9px;align-items:center;justify-content:center;min-height:45px;letter-spacing:.03em;transition:.2s}.gold-btn:hover{background:var(--gold-light)}.ghost-btn{background:#0b0d16bb;color:var(--gold-light);border-color:#746349}.ghost-btn:hover{background:#2c2630}
 /* Global navigation */
 .topbar{position:fixed;z-index:70;top:0;left:0;right:0;height:var(--header);border-bottom:1px solid #413a43;background:#0b0c14f2;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 32px;backdrop-filter:blur(14px)}.brand{font-size:.93rem;color:var(--gold-light);white-space:nowrap}.header-end{font-size:.66rem;color:#938b95;letter-spacing:.2em;white-space:nowrap}.menu-btn{display:none;background:transparent;border:1px solid #645743;color:var(--gold);min-width:40px;min-height:38px}
@@ -38,16 +71,18 @@ main{margin-left:var(--sidebar);padding-top:var(--header);min-height:100vh}.page
 @media(max-width:920px){:root{--sidebar:226px}.page{padding:48px 24px 90px}.quick-links{grid-template-columns:1fr}.gallery.landscape-gallery{grid-template-columns:1fr}.faction-hero{grid-template-columns:1fr}.faction-visual{min-height:270px;max-height:440px}.faction-visual::after{background:linear-gradient(0deg,#14141eca,transparent 35%)}.faction-body{grid-template-columns:1fr}.world-bottom{grid-template-columns:1fr}.detail-layout[data-kind=character]{grid-template-columns:1fr}}
 @media(max-width:700px){:root{--header:62px;--sidebar:min(83vw,300px)}.topbar{padding:0 16px;justify-content:flex-start}.menu-btn{display:block}.brand{font-size:.75rem}.header-end{margin-left:auto;font-size:.54rem}.sidebar{top:var(--header);transform:translateX(-110%);transition:transform .2s;box-shadow:9px 0 40px #0007}.sidebar.open{transform:none}.mobile-shade.open{display:block;position:fixed;inset:var(--header) 0 0;z-index:60;background:#0009}main{margin-left:0}.page{padding:36px 17px 80px}.page-heading{margin-bottom:28px}.gallery.character-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.gallery.continent-gallery,.gallery.landscape-gallery{grid-template-columns:1fr;gap:15px}.card-meta{padding:15px!important}.card-meta h3{font-size:.96rem!important}.card-meta p{font-size:.71rem!important}.hero{min-height:530px}.hero h2{font-size:clamp(2.3rem,10vw,4.5rem)}.faction-roster{grid-template-columns:1fr;gap:17px}.roster-copy{padding:14px 17px 17px}.roster-copy strong{font-size:1.05rem}.detail-layout[data-kind=character]{grid-template-columns:1fr}.modal-backdrop{padding:11px}.modal-window{max-height:92vh}.modal-content{padding:18px 18px 30px}.bgm-panel{padding:18px}.bgm-bars{display:none}.intro-content h1{font-size:clamp(2.2rem,10vw,4.2rem)}}
 @media(max-width:390px){.header-end{display:none}.gallery.character-gallery{gap:8px}.intro-content{padding:20px 11px}.intro-content h1{font-size:2.1rem}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media(prefers-reduced-motion:reduce){.feather{display:none!important}.intro-sky{transition-duration:.01ms!important}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a>
 <div id="intro" aria-label="페더스 크로니클 인트로">
   <div class="beyond"><img src="images/intro/beyond.webp" alt="" data-optional-image></div>
-  <div class="intro-door left"><img src="images/intro/door-left.webp" alt="" data-optional-image></div>
-  <div class="intro-door right"><img src="images/intro/door-right.webp" alt="" data-optional-image></div>
-  <div class="intro-content"><div class="intro-mark">✦</div><div class="eyebrow en">THE CHRONICLES OF FEATHERS</div><h1 class="en">FEATHERS<br>CHRONICLE</h1><p class="subtitle">질서의 날개와 자유의 날개</p><button class="gold-btn" id="enterButton" type="button">✧ &nbsp; 접속</button><span class="intro-hint">ENTER THE WORLD ARCHIVE</span></div>
+  <div class="intro-sky left"><img src="images/intro/sky-left.webp" alt="" data-optional-image></div>
+  <div class="intro-sky right"><img src="images/intro/sky-right.webp" alt="" data-optional-image></div>
+  <div class="feather-field" id="featherField" aria-hidden="true"></div>
+  <div class="intro-content"><div class="intro-mark">✦</div><div class="eyebrow en">THE CHRONICLES OF FEATHERS</div><h1 class="en">FEATHERS<br>CHRONICLE</h1><p class="subtitle">질서의 날개와 자유의 날개</p><button class="gold-btn" id="enterButton" type="button">✧ &nbsp; 세계로 들어가기</button><span class="intro-hint">ENTER THE WORLD ARCHIVE</span></div>
+  <button type="button" class="sound-control" id="soundToggle" aria-pressed="true" aria-label="효과음 끄기">♪ 효과음 켜짐</button>
 </div>
 <header class="topbar">
   <button id="menuButton" class="menu-btn" type="button" aria-label="목차 열기" aria-controls="sidebar" aria-expanded="false">☰</button>
@@ -107,7 +142,7 @@ main{margin-left:var(--sidebar);padding-top:var(--header);min-height:100vh}.page
 'use strict';
 /* ═══ 에셋 폴더만 채우면 자동 연결됩니다. 확장자를 바꾼다면 여기 경로도 수정하세요. ═══ */
 const ASSETS = {
-  intro: {beyond:'images/intro/beyond.webp',left:'images/intro/door-left.webp',right:'images/intro/door-right.webp'},
+  intro: {beyond:'images/intro/beyond.webp',left:'images/intro/sky-left.webp',right:'images/intro/sky-right.webp'},
   home: 'images/hero/home.webp',
   factions: {angel:'images/factions/angel-feathers.webp',fallen:'images/factions/fallen-feathers.webp'},
   continents: ['celestia','arcadia','noxteria'].map(n=>`images/continents/${n}.webp`),
@@ -215,11 +250,109 @@ function closeMenu(){$('sidebar').classList.remove('open');$('mobileShade').clas
 $('menuButton').addEventListener('click',()=>{const opened=!$('sidebar').classList.contains('open');$('sidebar').classList.toggle('open',opened);$('mobileShade').classList.toggle('open',opened);$('menuButton').setAttribute('aria-expanded',String(opened));$('menuButton').setAttribute('aria-label',opened?'목차 닫기':'목차 열기');});$('mobileShade').addEventListener('click',closeMenu);
 function navigate(){const hash=decodeURIComponent(location.hash.slice(1));const route=validRoutes.includes(hash)?hash:'home';for(const section of document.querySelectorAll('.page'))section.hidden=section.dataset.route!==route;for(const link of document.querySelectorAll('.nav-link')){const isActive=link.dataset.routeLink===route;link.classList.toggle('active',isActive);if(isActive)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');}if(route!==currentRoute){closeDetail();setFactionAudio(route);currentRoute=route;}closeMenu();window.scrollTo(0,0);}
 window.addEventListener('hashchange',navigate);document.querySelectorAll('[data-route-link]').forEach(link=>link.addEventListener('click',()=>{if(location.hash==='#'+link.dataset.routeLink)navigate();}));
-/* 대문 열림 애니메이션 */
+/* 천공 개방 + 흑백 깃털 / 클릭 효과음 */
 const intro=$('intro');let opening=false;
-function enter(){if(opening||intro.classList.contains('finished'))return;opening=true;intro.classList.add('intro-open');const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;setTimeout(()=>{intro.classList.add('finished');intro.setAttribute('aria-hidden','true');$('main').focus({preventScroll:true});opening=false;},reduced?70:2350);}
+const featherField=$('featherField');
+function scatterFeathers(){
+  featherField.replaceChildren();
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const ns='http://www.w3.org/2000/svg';
+  const makeSvg=(tag,attrs)=>{const el=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);return el;};
+  // Curved feather silhouette, fine engraved barbs, tapered quill.
+  for(let i=0;i<38;i++){
+    const white=i%2===0,feather=node('span','feather'+(white?' is-light':' is-dark'));
+    const inner=node('span','feather-inner');
+    const svg=makeSvg('svg',{viewBox:'0 0 48 132','aria-hidden':'true'});
+    const defs=makeSvg('defs',{});
+    const gradient=makeSvg('linearGradient',{id:'featherGradient'+i,x1:'0%',y1:'0%',x2:'100%',y2:'15%'});
+    const stops=white?[['0%','#aeb9d0'],['32%','#fffdf7'],['72%','#f2e9da'],['100%','#c3cad8']]:[['0%','#080a12'],['36%','#303442'],['72%','#141923'],['100%','#666374']];
+    for(const [offset,color] of stops)gradient.append(makeSvg('stop',{offset,'stop-color':color}));
+    defs.append(gradient);svg.append(defs);
+    svg.append(makeSvg('path',{d:'M23 112 C8 94 4 73 10 50 C13 35 26 12 39 5 C36 24 43 37 37 55 C34 78 27 98 23 112 Z',fill:'url(#featherGradient'+i+')',stroke:white?'#ffffffa8':'#9994a04a','stroke-width':'.7'}));
+    svg.append(makeSvg('path',{d:'M21 127 Q24 89 27 60 Q30 29 39 7',fill:'none',stroke:white?'#b3a999':'#93909c','stroke-width':'1.35','stroke-linecap':'round',opacity:'.85'}));
+    for(let n=0;n<13;n++){
+      const y=29+n*5.4,x=35-n*.75;
+      svg.append(makeSvg('path',{d:`M${x} ${y} Q${x-9} ${y+5} ${16-(n*.23)} ${y+11}`,fill:'none',stroke:white?'#aaa7ad':'#9994a1','stroke-width':'.55',opacity:white?'.52':'.3'}));
+      svg.append(makeSvg('path',{d:`M${x-8} ${y+2} Q${x-17} ${y+3} ${11+(n*.45)} ${y-3}`,fill:'none',stroke:white?'#fffdf5':'#b4afbf','stroke-width':'.5',opacity:white?'.55':'.22'}));
+    }
+    inner.append(svg);feather.append(inner);
+    feather.style.setProperty('--x',`${Math.random()*100}%`);
+    feather.style.setProperty('--size',`${14+Math.random()*20}px`);
+    feather.style.setProperty('--duration',`${3.8+Math.random()*2.3}s`);
+    feather.style.setProperty('--delay',`${Math.random()*1.55}s`);
+    feather.style.setProperty('--drift',`${(Math.random()-.5)*320}px`);
+    feather.style.setProperty('--rotation',`${(Math.random()-.5)*180+70}deg`);
+    feather.style.setProperty('--sway',`${1.4+Math.random()*1.5}s`);
+    feather.style.setProperty('--alpha',`${.62+Math.random()*.34}`);
+    featherField.append(feather);
+  }
+}
+/* Quiet, tactile archive click: soft parchment/wood contact; no notes or bell.
+   Generated with Web Audio so no sound asset is needed. */
+let soundEnabled=true,audioContext=null;
+function playClick(){
+  if(!soundEnabled)return;
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    audioContext ||= new AC();
+    const ctx=audioContext;
+    // Create the sound only after the audio engine is running. Some browsers
+    // start AudioContext suspended until the first user interaction.
+    const emit=()=>{
+      if(!soundEnabled||ctx.state!=='running')return;
+      const t=ctx.currentTime+.006;
+      const length=Math.ceil(ctx.sampleRate*.085);
+      const buffer=ctx.createBuffer(1,length,ctx.sampleRate);
+      const samples=buffer.getChannelData(0);
+      for(let i=0;i<length;i++)samples[i]=Math.random()*2-1;
+      const noise=ctx.createBufferSource();noise.buffer=buffer;
+      const lowpass=ctx.createBiquadFilter();
+      lowpass.type='lowpass';lowpass.frequency.value=1650;lowpass.Q.value=.6;
+      const env=ctx.createGain();
+      env.gain.setValueAtTime(.0001,t);
+      env.gain.linearRampToValueAtTime(.11,t+.004);
+      env.gain.exponentialRampToValueAtTime(.0001,t+.075);
+      noise.connect(lowpass);lowpass.connect(env);env.connect(ctx.destination);
+      noise.start(t);noise.stop(t+.083);
+      // Low wooden body gives presence without a bell or melodic tail.
+      const body=ctx.createOscillator(),bodyEnv=ctx.createGain();
+      body.type='triangle';body.frequency.setValueAtTime(225,t);
+      body.frequency.exponentialRampToValueAtTime(155,t+.072);
+      bodyEnv.gain.setValueAtTime(.0001,t);
+      bodyEnv.gain.linearRampToValueAtTime(.045,t+.005);
+      bodyEnv.gain.exponentialRampToValueAtTime(.0001,t+.08);
+      body.connect(bodyEnv);bodyEnv.connect(ctx.destination);
+      body.start(t);body.stop(t+.085);
+    };
+    if(ctx.state==='running')emit();
+    else ctx.resume().then(emit).catch(()=>{});
+  }catch(_e){/* Sound may be disabled by browser/device settings. */}
+}
+$('soundToggle').addEventListener('click',()=>{
+  soundEnabled=!soundEnabled;
+  $('soundToggle').textContent=soundEnabled?'♪ 효과음 켜짐':'♪ 효과음 꺼짐';
+  $('soundToggle').setAttribute('aria-pressed',String(soundEnabled));
+  $('soundToggle').setAttribute('aria-label',soundEnabled?'효과음 끄기':'효과음 켜기');
+});
+document.addEventListener('click',e=>{
+  if(e.target.closest('button,a,[data-route-link],.audio-upload'))playClick();
+});
+function enter(){
+  if(opening||intro.classList.contains('finished'))return;
+  opening=true;scatterFeathers();intro.classList.add('intro-open');
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(()=>{
+    intro.classList.add('finished');intro.setAttribute('aria-hidden','true');
+    $('main').focus({preventScroll:true});opening=false;
+  },reduced?100:3700);
+}
 $('enterButton').addEventListener('click',enter);
-$('replayIntro').addEventListener('click',()=>{stopBgm();shouldPlay=true;location.hash='home';navigate();intro.classList.remove('intro-open','finished');intro.removeAttribute('aria-hidden');$('enterButton').focus();});
+$('replayIntro').addEventListener('click',()=>{
+  stopBgm();shouldPlay=true;location.hash='home';navigate();
+  featherField.replaceChildren();
+  intro.classList.remove('intro-open','finished');intro.removeAttribute('aria-hidden');$('enterButton').focus();
+});
 navigate();
 </script>
 </body>
